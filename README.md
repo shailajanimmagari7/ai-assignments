@@ -19,8 +19,8 @@ A simple Ruby on Rails application for managing daily tasks.
 ### Core Features:
 
 - 📝 Create, update, and delete todos
-- ✅ Mark tasks as complete or incomplete
-- 📅 View todos by date or status
+- ✅ Mark tasks as complete
+- 📅 View todos by month-wise
 
 
 ## 🛠️ Technologies Used
