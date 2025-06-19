@@ -19,18 +19,21 @@
       <% end %>
     <% end %>
 
-    <ul class="todo-list">
-      <% @todos.each do |todo| %>
-        <li class="task <%= todo.completed ? 'completed' : 'pending' %>">
-          <span class="task-title"><%= todo.title %></span>
-          <div class="actions">
-            <% unless todo.completed %>
-              <%= button_to "Mark as Completed", todo_path(todo), method: :patch, class: "action-button complete" %>
-            <% end %>
-            <%= button_to "Delete", todo_path(todo), method: :delete, class: "action-button delete" %>
-          </div>
-        </li>
-      <% end %>
-    </ul>
+    <% @todos_grouped_by_month.each do |month, todos| %>
+      <h2 class="month-header">🗓 <%= month %></h2>
+      <ul class="todo-list">
+        <% todos.each do |todo| %>
+          <li class="task <%= todo.completed ? 'completed' : 'pending' %>">
+            <span class="task-title"><%= todo.title %></span>
+            <div class="actions">
+              <% unless todo.completed %>
+                <%= button_to "Mark as Completed", todo_path(todo), method: :patch, class: "action-button complete" %>
+              <% end %>
+              <%= button_to "Delete", todo_path(todo), method: :delete, class: "action-button delete" %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
   </div>
 </div>
