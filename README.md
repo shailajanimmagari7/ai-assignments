@@ -21,7 +21,7 @@ A simple Ruby on Rails application for managing daily tasks.
 - 📝 Create, update, and delete todos
 - ✅ Mark tasks as complete or incomplete
 - 📅 View todos by date or status
-- 🔍 Filter todos (e.g., completed, pending)
+
 
 ## 🛠️ Technologies Used
 
