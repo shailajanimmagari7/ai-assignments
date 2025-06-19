@@ -1,6 +1,9 @@
 class TodosController < ApplicationController
   def index
-    @todos = Todo.all.order(created_at: :desc)
+    @todos_grouped_by_month = Todo
+      .order(created_at: :desc)
+      .group_by { |todo| todo.created_at.strftime("%B %Y") }
+
     @todo = Todo.new
   end
 
@@ -10,7 +13,7 @@ class TodosController < ApplicationController
     if @todo.save
       redirect_to root_path
     else
-      @todos = Todo.all.order(created_at: :desc) 
+      @todos_grouped_by_month = Todo.order(created_at: :desc).group_by { |todo| todo.created_at.strftime("%B %Y") }
       render :index, status: :unprocessable_entity
     end
   end
