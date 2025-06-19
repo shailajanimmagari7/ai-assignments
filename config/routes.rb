@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get "pages/home"
-  root "pages#home"
+  root "todos#index"
+  resources :todos, only: [:index, :create, :destroy, :update]
 end
-
