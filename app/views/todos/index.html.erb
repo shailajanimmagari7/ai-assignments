@@ -1,0 +1,39 @@
+<div class="page-wrapper">
+  <div class="todo-container">
+    <h1>📋 My ToDo List</h1>
+
+    <%= form_with(model: @todo, url: todos_path, local: true) do |f| %>
+      <div class="form-group">
+        <%= f.text_field :title, placeholder: "Enter a new task", class: "todo-input" %>
+        <%= f.submit "Add", class: "add-button" %>
+      </div>
+
+      <% if @todo.errors.any? %>
+        <div class="error-messages">
+          <ul>
+            <% @todo.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% @todos_grouped_by_month.each do |month, todos| %>
+      <h2 class="month-header">🗓 <%= month %></h2>
+      <ul class="todo-list">
+        <% todos.each do |todo| %>
+          <li class="task <%= todo.completed ? 'completed' : 'pending' %>">
+            <span class="task-title"><%= todo.title %></span>
+            <div class="actions">
+              <% unless todo.completed %>
+                <%= button_to "Mark as Completed", todo_path(todo), method: :patch, class: "action-button complete" %>
+              <% end %>
+              <%= button_to "Delete", todo_path(todo), method: :delete, class: "action-button delete" %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>
